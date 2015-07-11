@@ -1,6 +1,6 @@
 #cl-diskspace
 
-cl-diskspace is a Common Lisp feature to get disk space information using statvfs, supports Unix/Linux/Mac.
+cl-diskspace is a Common Lisp feature to get disk space information using statvfs, supports Unix/Linux/Mac/Windows.
 
 
 ##License
@@ -8,9 +8,9 @@ Copyright (c) 2015 Muyinliu Xing
 Released under the ISC License.
 
 ##Compatibility
-|  Common Lisp  |  Linux  |  Mac |  Unix | 
-|-------------|------|-----|-----|
-|  SBCL           |    Yes   |   Yes  |         |
+|  Common Lisp  |  Linux  |  Mac |  Unix | Windows |
+|-------------|------|-----|-----|-------|
+|  SBCL           |    Yes   |   Yes  |         |  Yes  |
 
 ##Install
 ```

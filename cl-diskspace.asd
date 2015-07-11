@@ -1,4 +1,4 @@
-;;;; cl-diskinfo.asd
+;;;; cl-diskspace.asd
 
 (eval-when (:load-toplevel :execute)
   (asdf:operate 'asdf:load-op 'cffi-grovel)
@@ -6,7 +6,7 @@
 
 (asdf:defsystem #:cl-diskspace
   :name "diskspace"
-  :version "0.1"
+  :version "0.2"
   :description "Disk total/free/usable space information."
   :author "Muyinliu Xing <muyinliu@gmail.com>"
   :serial t
@@ -18,4 +18,8 @@
                              (:module "unix"
                               :serial t
                               :components ((cffi-grovel:grovel-file "grovel-statvfs")
-                                           (:file "cl-diskspace-statvfs")))))))
+                                           (:file "cl-diskspace-statvfs")))
+                             #+win32
+             (:module "win32"
+                :serial t
+                :components ((:file "cl-diskspace-get-disk-free-space")))))))
