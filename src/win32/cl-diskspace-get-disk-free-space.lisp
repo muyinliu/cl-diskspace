@@ -38,6 +38,14 @@
 
 ;;; High level API
 
+(defun disk-space (path)
+  "Disk space information include total/free/available space."
+  (multiple-value-bind (sectorsPerCluster bytesPerSector numberOfFreeClusters totalNumberOfClusters)
+      (GetDiskFreeSpace path)
+    (values (* sectorsPerCluster bytesPerSector totalNumberOfClusters)
+            (* sectorsPerCluster bytesPerSector numberOfFreeClusters)
+            (* sectorsPerCluster bytesPerSector numberOfFreeClusters))))
+
 (defun disk-total-space (path)
   (multiple-value-bind (sectorsPerCluster bytesPerSector numberOfFreeClusters totalNumberOfClusters)
       (GetDiskFreeSpace path)
