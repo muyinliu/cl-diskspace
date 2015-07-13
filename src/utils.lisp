@@ -1,0 +1,23 @@
+;;;; utils.lisp
+
+(in-package #:cl-diskspace)
+
+(defun human-readable (number)
+  (check-type number integer)
+  (if (>= number 1024)
+      (if (>= number 1048576)
+          (if (>= number 1073741824)
+              (if (>= number 1099511627776)
+                  (if (>= number 1125899906842624)
+                      (if (>= number 1152921504606846976)
+                          (if (>= number 1180591620717411303424)
+                              (if (>= number 1208925819614629174706176)
+                                  (format nil "~,1FY" (float (/ number 1208925819614629174706176)))
+                                  (format nil "~,1FZ" (float (/ number 1180591620717411303424))))
+                              (format nil "~,1FE" (float (/ number 1152921504606846976))))
+                          (format nil "~,1FP" (float (/ number 1125899906842624))))
+                      (format nil "~,1FT" (float (/ number 1099511627776))))
+                  (format nil "~,1FG" (float (/ number 1073741824))))
+              (format nil "~,1FM" (float (/ number 1048576))))
+          (format nil "~,1FK" (float (/ number 1024))))
+      (format nil "~,1FB" number)))
