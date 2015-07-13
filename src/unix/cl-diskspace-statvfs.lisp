@@ -21,34 +21,44 @@
 
 ;;;; High level APIs
 
-(defun disk-space (path)
+(defun disk-space (path &optional human-readable)
   "Disk space information include total/free/available space."
   (multiple-value-bind (bsize frsize blocks bfree bavail files
 			      ffree favail fsig flag namemax)
       (statvfs path)
     (declare (ignore bsize files ffree favail fsig flag namemax))
-    (values (* frsize blocks) (* frsize bfree) (* frsize bavail))))
+    (if human-readable
+        (values (human-readable (* frsize blocks))
+                (human-readable (* frsize bfree))
+                (human-readable (* frsize bavail)))
+        (values (* frsize blocks) (* frsize bfree) (* frsize bavail)))))
 
-(defun disk-total-space (path)
+(defun disk-total-space (path &optional human-readable)
   "Disk total space."
   (multiple-value-bind (bsize frsize blocks bfree bavail files
 			      ffree favail fsig flag namemax)
       (statvfs path)
     (declare (ignore bsize bfree bavail files ffree favail fsig flag namemax))
-    (* frsize blocks)))
+    (if human-readable
+        (human-readable (* frsize blocks))
+        (* frsize blocks))))
 
-(defun disk-free-space (path)
+(defun disk-free-space (path &optional human-readable)
   "Disk free space."
   (multiple-value-bind (bsize frsize blocks bfree bavail files
 			      ffree favail fsig flag namemax)
       (statvfs path)
     (declare (ignore bsize blocks bavail files ffree favail fsig flag namemax))
-    (* frsize bfree)))
+    (if human-readable
+        (human-readable (* frsize bfree))
+        (* frsize bfree))))
 
-(defun disk-available-space (path)
+(defun disk-available-space (path &optional human-readable)
   "Disk available space."
   (multiple-value-bind (bsize frsize blocks bfree bavail files
 			      ffree favail fsig flag namemax)
       (statvfs path)
     (declare (ignore bsize blocks bfree files ffree favail fsig flag namemax))
-    (* frsize bavail)))
+    (if human-readable
+        (human-readable (* frsize bavail))
+        (* frsize bavail))))

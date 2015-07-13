@@ -12,14 +12,15 @@
   :serial t
   :depends-on (#:cffi #:cffi-grovel)
   :components ((:module "src"
-                :serial t
-                :components ((:file "packages")
-                             #+(or bsd freebsd linux)
-                             (:module "unix"
-                              :serial t
-                              :components ((cffi-grovel:grovel-file "grovel-statvfs")
-                                           (:file "cl-diskspace-statvfs")))
-                             #+win32
-             (:module "win32"
-                :serial t
-                :components ((:file "cl-diskspace-get-disk-free-space")))))))
+                        :serial t
+                        :components ((:file "packages")
+                                     (:file "utils")
+                                     #+(or bsd freebsd linux)
+                                     (:module "unix"
+                                              :serial t
+                                              :components ((cffi-grovel:grovel-file "grovel-statvfs")
+                                                           (:file "cl-diskspace-statvfs")))
+                                     #+win32
+                                     (:module "win32"
+                                              :serial t
+                                              :components ((:file "cl-diskspace-get-disk-free-space")))))))

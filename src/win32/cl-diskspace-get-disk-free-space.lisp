@@ -38,25 +38,35 @@
 
 ;;; High level API
 
-(defun disk-space (path)
+(defun disk-space (path &optional human-readable)
   "Disk space information include total/free/available space."
   (multiple-value-bind (sectorsPerCluster bytesPerSector numberOfFreeClusters totalNumberOfClusters)
       (GetDiskFreeSpace path)
-    (values (* sectorsPerCluster bytesPerSector totalNumberOfClusters)
-            (* sectorsPerCluster bytesPerSector numberOfFreeClusters)
-            (* sectorsPerCluster bytesPerSector numberOfFreeClusters))))
+    (if human-readable
+        (values (human-readable (* sectorsPerCluster bytesPerSector totalNumberOfClusters))
+                (human-readable (* sectorsPerCluster bytesPerSector numberOfFreeClusters))
+                (human-readable (* sectorsPerCluster bytesPerSector numberOfFreeClusters)))
+        (values (* sectorsPerCluster bytesPerSector totalNumberOfClusters)
+                (* sectorsPerCluster bytesPerSector numberOfFreeClusters)
+                (* sectorsPerCluster bytesPerSector numberOfFreeClusters)))))
 
-(defun disk-total-space (path)
+(defun disk-total-space (path &optional human-readable)
   (multiple-value-bind (sectorsPerCluster bytesPerSector numberOfFreeClusters totalNumberOfClusters)
       (GetDiskFreeSpace path)
-    (* sectorsPerCluster bytesPerSector totalNumberOfClusters)))
+    (if human-readable
+        (human-readable (* sectorsPerCluster bytesPerSector totalNumberOfClusters))
+        (* sectorsPerCluster bytesPerSector totalNumberOfClusters))))
 
-(defun disk-free-space (path)
+(defun disk-free-space (path &optional human-readable)
   (multiple-value-bind (sectorsPerCluster bytesPerSector numberOfFreeClusters totalNumberOfClusters)
       (GetDiskFreeSpace path)
-    (* sectorsPerCluster bytesPerSector numberOfFreeClusters)))
+    (if human-readable
+        (human-readable (* sectorsPerCluster bytesPerSector numberOfFreeClusters))
+        (* sectorsPerCluster bytesPerSector numberOfFreeClusters))))
 
-(defun disk-available-space (path)
+(defun disk-available-space (path &optional human-readable)
   (multiple-value-bind (sectorsPerCluster bytesPerSector numberOfFreeClusters totalNumberOfClusters)
       (GetDiskFreeSpace path)
-    (* sectorsPerCluster bytesPerSector numberOfFreeClusters)))
+    (if human-readable
+        (human-readable (* sectorsPerCluster bytesPerSector numberOfFreeClusters))
+        (* sectorsPerCluster bytesPerSector numberOfFreeClusters))))
