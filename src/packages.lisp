@@ -5,7 +5,9 @@
         #:cffi
         #:cffi-grovel)
   (:nicknames :diskspace)
-  (:export #:disk-space
+  (:export #:list-all-disks
+           #:disk-space
            #:disk-total-space
            #:disk-free-space
-           #:disk-available-space))
+           #:disk-available-space
+           #:size-in-human-readable))

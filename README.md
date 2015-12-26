@@ -1,6 +1,6 @@
 #cl-diskspace
 
-cl-diskspace is a Common Lisp feature to get disk space information using statvfs(Unix/Linux/Mac) or GetDiskFreeSpace(Windows), supports Unix/Linux/Mac/Windows.
+cl-diskspace is a Common Lisp feature to list disks with command line tool **df**(Linux/Mac) or GetLogicalDrives(Windows), and get disk space information using statvfs(Unix/Linux/Mac) or GetDiskFreeSpace(Windows), supports Unix/Linux/Mac/Windows.
 
 
 ##License
@@ -12,22 +12,40 @@ Released under the ISC License.
 |---------------|:-------:|:----:|:-----:|:-------:|
 |  SBCL         |   Yes   |  Yes |       |   Yes   |
 Note: I don't have Unix system so haven't test on Unix yet.
+Note: Have test in Windows XP/Windows 7/Windows 8.1/Windows 10
 Note: Welcome to reply test results in other Common Lisp implements.
 
 ##Install and load with QuickLisp
 In shell:
-```
-$ git clone https://github.com/muyinliu/cl-diskspace.git
-$ cp -r cl-diskspace ~/quicklisp/local-projects/
+```shell
+git clone https://github.com/muyinliu/cl-diskspace.git
+cp -r cl-diskspace ~/quicklisp/local-projects/
 ```
 In Common Lisp: 
-```
+```lisp
 (ql:quickload 'cl-diskspace)
 ```
 
 ##Usage
-###Get disk space information
+###List all disks
+```lisp
+(diskspace:list-all-disks)
 ```
+```=>
+("/" "/Volumes/Seagate1T")
+```
+Note: result in Mac
+
+```lisp
+(diskspace:list-all-disks)
+```
+```=>
+("C:\\" "D:\\")
+```
+Note: result in Windows
+
+###Get disk space information
+```lisp
 (diskspace:disk-space "/")
 ```
 Will get something like this:
@@ -36,21 +54,21 @@ Will get something like this:
 16509661184
 16247517184
 ```
-Means that the total space is 118.44G, free space is 15.38G and available space is 15.13G
+Note: the total space is 118.44G, free space is 15.38G and available space is 15.13G
 
 ###Get disk space information in human-readable
-```
+```lisp
 (diskspace:disk-space "/" t)
 ```
 Will get something like this:
 ```
-"118.4G"
-"15.4G"
-"15.1G"
+"118.44G"
+"15.38G"
+"15.13G"
 ```
 
 ###Get disk total space
-```
+```lisp
 (diskspace:disk-total-space "/")
 ```
 Will get something like this:
@@ -59,16 +77,16 @@ Will get something like this:
 ```
 
 ###Get disk total space in human-readable
-```
+```lisp
 (diskspace:disk-total-space "/" t)
 ```
 Will get something like this:
 ```
-118.4G
+"118.4G"
 ```
 
 ###Get disk free space
-```
+```lisp
 (diskspace:disk-free-space "/")
 ```
 Will get something like this:
@@ -77,16 +95,16 @@ Will get something like this:
 ```
 
 ###Get disk free space in human-readable
-```
+```lisp
 (diskspace:disk-free-space "/" t)
 ```
 Will get something like this:
 ```
-15.4G
+"15.38G"
 ```
 
 ###Get disk available space
-```
+```lisp
 (diskspace:disk-available-space "/")
 ```
 Will get something like this:
@@ -95,10 +113,10 @@ Will get something like this:
 ```
 
 ###Get disk available space in human-readable
-```
-(diskspace:disk-available-space "/")
+```lisp
+(diskspace:disk-available-space "/" t)
 ```
 Will get something like this:
 ```
-15.1G
+"15.13G"
 ```
