@@ -12,7 +12,9 @@ Released under the ISC License.
 |---------------|:-------:|:----:|:-----:|:-------:|
 |  SBCL         |   Yes   |  Yes |       |   Yes   |
 Note: I don't have Unix system so haven't test on Unix yet.
+
 Note: Have test in Windows XP/Windows 7/Windows 8.1/Windows 10
+
 Note: Welcome to reply test results in other Common Lisp implements.
 
 ##Install and load with QuickLisp
