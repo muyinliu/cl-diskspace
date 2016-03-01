@@ -46,6 +46,26 @@ Note: result in Mac
 ```
 Note: result in Windows
 
+###Get all disk space information
+```lisp
+(diskspace:list-all-disks-info)
+```
+Will get something like this:
+```=>
+((:DISK "/" :TOTAL 127175917568 :FREE 16509661184 :AVAILABLE
+16247517184 :USE-PERCENT 87))
+```
+
+###Get all disk space information in human-readable
+```lisp
+(diskspace:list-all-disks-info t)
+```
+Will get something like this:
+```=>
+((:DISK "/" :TOTAL "118.44G" :FREE "15.38G" :AVAILABLE
+"15.13G" :USE-PERCENT 87))
+```
+
 ###Get disk space information
 ```lisp
 (diskspace:disk-space "/")

@@ -4,8 +4,9 @@
   (:use #:cl
         #:cffi
         #:cffi-grovel)
-  (:nicknames :diskspace)
+  (:nicknames :diskspace :ds)
   (:export #:list-all-disks
+           #:list-all-disk-info
            #:disk-space
            #:disk-total-space
            #:disk-free-space

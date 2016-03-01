@@ -6,7 +6,7 @@
 
 (include "sys/statvfs.h")
 
-;;; from sys/statvfs.h
+;;; from sys/statvfs.h (/usr/include/sys/statvfs.h)
 ;; struct statvfs {
 ;;     unsigned long  f_bsize;    /* filesystem block size */
 ;;     unsigned long  f_frsize;   /* fragment size */
