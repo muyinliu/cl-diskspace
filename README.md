@@ -33,6 +33,7 @@ In Common Lisp:
 ```lisp
 (diskspace:list-all-disks)
 ```
+Will get something like this:
 ```=>
 ("/" "/Volumes/Seagate1T")
 ```
@@ -41,6 +42,7 @@ Note: result in Mac
 ```lisp
 (diskspace:list-all-disks)
 ```
+Will get something like this:
 ```=>
 ("C:\\" "D:\\")
 ```
