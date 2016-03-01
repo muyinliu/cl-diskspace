@@ -6,7 +6,7 @@
 
 (asdf:defsystem #:cl-diskspace
   :name "diskspace"
-  :version "0.3"
+  :version "0.3.1"
   :description "List disks, get disk total/free/usable space information."
   :author "Muyinliu Xing <muyinliu@gmail.com>"
   :serial t
@@ -31,4 +31,5 @@
                       :components
                       ((:file "cl-diskspace-load-foreign-library")
                        (:file "cl-diskspace-get-logical-drives")
-                       (:file "cl-diskspace-get-disk-free-space")))))))
+                       (:file "cl-diskspace-get-disk-free-space")))
+             (:file "common")))))
