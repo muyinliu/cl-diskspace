@@ -15,15 +15,17 @@
     (loop for disk-info in (ppcre:split "\\n" disk-info-string)
        collect
          #+linux
-         (destructuring-bind (filesystem size used available use-percent mounted-on)
-             (ppcre:split "\\s+" disk-info)
+         (ppcre:register-groups-bind (filesystem size used available use-percent mounted-on)
+             ("^(.+)\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)%\\s+(.+)$"
+              disk-info)
            (declare (ignore filesystem size used available use-percent))
-           mounted-on)
+           (string-trim '(#\Space) mounted-on))
          ;; for Mac OS X
          #+bsd
-         (destructuring-bind (filesystem size used available use-percent
-                                         iused ifree iuse-percent mounted-on)
-             (ppcre:split "\\s+" disk-info)
+         (ppcre:register-groups-bind (filesystem size used available use-percent
+                                                 iused ifree iuse-percent mounted-on)
+             ("^(.+)\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)%\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)%\\s+(.+)$"
+              disk-info)
            (declare (ignore filesystem size used available use-percent
-                            iused ifree iuse-percent ))
-           mounted-on))))
+                            iused ifree iuse-percent))
+           (string-trim '(#\Space) mounted-on)))))
