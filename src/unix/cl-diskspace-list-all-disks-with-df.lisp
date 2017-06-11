@@ -8,7 +8,7 @@
   (let ((disk-info-string (with-output-to-string (stream)
                             (uiop/run-program:run-program
                              #+linux
-                             "df | grep ^/dev"
+                             "df -P | grep ^/dev"
                              #+bsd
                              "df -k | grep ^/dev"
                              :output stream))))
