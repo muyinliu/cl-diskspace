@@ -6,9 +6,10 @@
 
 (asdf:defsystem #:cl-diskspace
   :name "diskspace"
-  :version "0.3.1"
   :description "List disks, get disk total/free/usable space information."
+  :version "0.3.1"
   :author "Muyinliu Xing <muyinliu@gmail.com>"
+  :license "ISC"
   :serial t
   :depends-on (:cffi
                #+(or bsd freebsd linux) :cl-ppcre :uiop)
