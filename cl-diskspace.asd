@@ -11,7 +11,7 @@
   :author "Muyinliu Xing <muyinliu@gmail.com>"
   :serial t
   :depends-on (:cffi
-               #+(or bsd freebsd linux) :cl-ppcre)
+               #+(or bsd freebsd linux) :cl-ppcre :uiop)
   :components
   ((:module "src"
             :serial t
