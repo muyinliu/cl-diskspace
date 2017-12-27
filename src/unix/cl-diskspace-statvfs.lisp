@@ -12,10 +12,11 @@
 
 (defun statvfs (path)
   (with-foreign-object (buf '(:struct statvfs))
-    (funcall #'%statvfs path buf)
+    (%statvfs path buf)
     (with-foreign-slots ((bsize frsize blocks bfree bavail files
-                          ffree favail fsig flag namemax)
-                         buf (:struct statvfs))
+                                ffree favail fsig flag namemax)
+                         buf
+                         (:struct statvfs))
       (values bsize frsize blocks bfree bavail files
               ffree favail fsig flag namemax))))
 
