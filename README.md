@@ -57,7 +57,7 @@ Note: result in Windows
 ### Get all disk space information
 
 ```lisp
-(diskspace:list-all-disks-info)
+(diskspace:list-all-disk-info)
 ```
 Will get something like this:
 ```=>
@@ -68,7 +68,7 @@ Will get something like this:
 ### Get all disk space information in human-readable
 
 ```lisp
-(diskspace:list-all-disks-info t)
+(diskspace:list-all-disk-info t)
 ```
 Will get something like this:
 ```=>
