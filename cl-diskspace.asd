@@ -25,7 +25,8 @@
                       :components
                       ((cffi-grovel:grovel-file "grovel-statvfs")
                        (:file "cl-diskspace-list-all-disks-with-df")
-                       (:file "cl-diskspace-statvfs")))
+                       (:file "cl-diskspace-statvfs")
+                       (:file "cl-diskspace-mount-ent")))
              #+win32
              (:module "win32"
                       :serial t

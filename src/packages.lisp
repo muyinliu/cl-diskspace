@@ -11,4 +11,9 @@
            #:disk-total-space
            #:disk-free-space
            #:disk-available-space
-           #:size-in-human-readable))
+           #:size-in-human-readable
+           #:mntent
+           #:set-mntent
+           #:get-mntent
+           #:end-mntent
+           #:lispify-plist-mntent))
