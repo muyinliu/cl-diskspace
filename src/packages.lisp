@@ -16,4 +16,7 @@
            #+linux #:set-mntent
            #+linux #:get-mntent
            #+linux #:end-mntent
-           #+linux #:lispify-plist-mntent))
+           #+linux #:lispify-plist-mntent
+           #+linux #:mountpoint->device
+           #+linux #:mountpoint->fstype
+           #+linux #:mountpoint->mnt-options))
