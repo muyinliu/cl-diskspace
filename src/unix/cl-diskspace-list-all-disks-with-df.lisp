@@ -8,9 +8,9 @@
   (let ((disk-info-string (with-output-to-string (stream)
                             (uiop/run-program:run-program
                              #+linux
-                             "df -P | grep ^/dev"
+                             "/bin/df -P | grep ^/dev"
                              #+bsd
-                             "df -k | grep ^/dev"
+                             "/bin/df -k | grep ^/dev"
                              :output stream))))
     (loop for disk-info in (ppcre:split "\\n" disk-info-string)
        collect
