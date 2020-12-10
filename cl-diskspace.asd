@@ -1,18 +1,17 @@
 ;;;; cl-diskspace.asd
 
-;; CFFI-Grovel is needed for processing grovel-file components
-(cl:eval-when (:load-toplevel :execute)
-  (asdf:operate 'asdf:load-op 'cffi-grovel))
-
-(asdf:defsystem #:cl-diskspace
+(asdf:defsystem "cl-diskspace"
   :name "diskspace"
   :description "List disks, get disk total/free/usable space information."
   :version "0.3.1"
   :author "Muyinliu Xing <muyinliu@gmail.com>"
   :license "ISC"
+  :defsystem-depends-on ("cffi-grovel")
+  :depends-on ("cffi"
+               #+(or bsd freebsd linux)
+               "cl-ppcre"
+               "uiop")
   :serial t
-  :depends-on (:cffi
-               #+(or bsd freebsd linux) :cl-ppcre :uiop)
   :components
   ((:module "src"
             :serial t
@@ -23,7 +22,7 @@
              (:module "unix"
                       :serial t
                       :components
-                      ((cffi-grovel:grovel-file "grovel-statvfs")
+                      ((:cffi-grovel-file "grovel-statvfs")
                        (:file "cl-diskspace-list-all-disks-with-df")
                        (:file "cl-diskspace-statvfs")))
              #+win32
